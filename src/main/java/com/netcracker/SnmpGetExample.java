@@ -36,10 +36,10 @@ public class SnmpGetExample {
         transport.listen();
 
         Snmp snmp = new Snmp(transport);
-        CommunityTarget comtarget = communityTarget();
+        CommunityTarget comTarget = communityTarget();
         PDU pdu = pdu();
 
-        processSnmpResponce(snmp.get(pdu, comtarget));
+        processSnmpResponce(snmp.get(pdu, comTarget));
 
         snmp.close();
     }
