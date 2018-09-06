@@ -39,14 +39,14 @@ public class SnmpGetExample {
         CommunityTarget comTarget = communityTarget();
         PDU pdu = pdu();
 
-        processSnmpResponce(snmp.get(pdu, comTarget));
+        processSnmpResponse(snmp.get(pdu, comTarget));
 
         snmp.close();
     }
 
     private static CommunityTarget communityTarget() {
         CommunityTarget result = new CommunityTarget();
-        result.setCommunity(new OctetString(community));
+        result.setCommunity(new OctetString(community));;
         result.setVersion(snmpVersion);
         result.setAddress(new UdpAddress(ipAddress + "/" + port));
         result.setRetries(2);
@@ -64,15 +64,15 @@ public class SnmpGetExample {
         return result;
     }
 
-    private static void processSnmpResponce(ResponseEvent response) throws IOException {
+    private static void processSnmpResponse(ResponseEvent response) throws IOException {
         if (response != null) {
-            processPduResponce(response.getResponse());
+            processPdqResponse(response.getResponse());
         } else {
             System.out.println("Error: Agent Timeout... ");
         }
     }
 
-    private static void processPduResponce(PDU responsePDU) throws IOException {
+    private static void processPdqResponse(PDU responsePDU) throws IOException {
         if (responsePDU != null) {
             int errorStatus = responsePDU.getErrorStatus();
             int errorIndex = responsePDU.getErrorIndex();
